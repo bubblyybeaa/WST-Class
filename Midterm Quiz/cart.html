@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Profile - Cart</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&family=Epunda+Slab:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+  </head>
+
+  <body style="background-color: #fbe0ba;">
+
+    <div class="topnav">
+      <a href="index.html">Home</a>
+      <a href="aboutme.html">About</a>
+      <a href="funfact.html">Fun Fact</a>
+      <a href="products.html">Products</a>
+      <a href="gallery.html">Gallery</a>
+      <a class="active" href="cart.html">Cart</a>
+      <a href="contactus.html">Contact</a>
+    </div>
+
+    <center>
+      <img src="banner.jpg" class="banner-img" alt="banner">
+    </center>
+
+    <div class="container">
+      <h3 class="bitcount-grid-double">Cart</h3>
+        <label for="productSelect">Choose a product:</label><br>
+        <select id="productSelect" class="epunda-slab-font">
+          <option value="flick bodybag">Flick bodybag - P150</option>
+          <option value="isabelle plushie">Isabelle Plushie - P450</option>
+          <option value="icons necklace and pendants">Icons necklace and pendants - P100</option>
+          <option value="villager wallets">Villager wallets - P75</option>
+          <option value="zucker+marina plushie sale">Zucker+Marina plushie sale - P500</option>
+          <option value="gulliver plushie">Gulliver Plushie - P450</option>
+          <option value="merengue plushie">Merengue Plushie - P450</option>
+          <option value="celeste plushie">Celeste Plushie - P450</option>
+          </select>
+
+          <p style="margin-top: 15px">
+            Quantity:
+            <button class="qty-btn minus">-</button>
+            <span class="quantity">1</span>
+            <button class="qty-btn plus">+</button>
+          </p>
+    </div>
+
+    <button id="scrollTopBtn">Top</button>
+    <script src="script.js"></script>
+  </body>
+</html>
