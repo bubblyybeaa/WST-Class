@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Validation Form</title>
+    <style>
+        body { font-family: Arial, sans-serif; background:#ffcad4; display:flex; align-items:center; justify-content:center; height:100vh; margin:0; }
+        .card { background:white; padding:20px 24px; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,0.08); width:320px; }
+        h1 { font-size:18px; margin:0 0 12px; }
+        .field { margin-bottom:12px; }
+        label { display:block; font-size:13px; margin-bottom:4px; }
+        input[type="text"], input[type="email"], input[type="date"] { width:100%; padding:8px 10px; border:1px solid #ccd6df; border-radius:4px; box-sizing:border-box; }
+        .radios { display:flex; gap:8px; align-items:center; }
+        .actions { text-align:right; }
+        button { background:#0078d4; color:#fff; border:none; padding:8px 12px; border-radius:4px; cursor:pointer; }
+        button:active { transform:translateY(1px); }
+        .note { font-size:12px; color:#666; margin-top:8px; }
+
+        .result { margin-top:14px; padding:12px; border-radius:6px; background:#fff; border:1px solid #e1e7ee; font-size:13px; max-width:100%; box-shadow:0 4px 12px rgba(0,0,0,0.04); }
+        .result pre { margin:0; white-space:pre-wrap; word-break:break-word; }
+    </style>
+</head>
+<body>
+    <form class="card" id="simpleForm" action="#" method="post">
+        <h1>Short Validation Form</h1>
+        <div class="field">
+            <label for="name">Full name</label>
+            <input type="text" id="name" name="name" placeholder="Jane Doe" required>
+        </div>
+        <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        </div>
+        <div class="field">
+            <label>Gender</label>
+            <div class="radios">
+                <label><input type="radio" name="gender" value="female" required> Female</label>
+                <label><input type="radio" name="gender" value="male"> Male</label>
+                <label><input type="radio" name="gender" value="other"> Other</label>
+            </div>
+        </div>
+        <div class="field">
+            <label for="birthday">Birthday</label>
+            <input type="date" id="birthday" name="birthday" required>
+        </div>
+        <div class="actions">
+            <button type="submit">Submit</button>
+        </div>
+        <p class="note">All fields are required. Open DevTools Console to see submitted values.</p>
+
+        <div id="result" class="result" aria-live="polite" hidden>
+            <strong>Submitted values</strong>
+            <div id="resultFormatted"></div>
+        </div>
+    </form>
+
+    <script>
+    const form = document.getElementById('simpleForm');
+    const result = document.getElementById('result');
+    const resultFormatted = document.getElementById('resultFormatted');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const data = new FormData(form);
+        const obj = Object.fromEntries(data.entries());
+        console.log('Form submitted:', obj);
+
+        resultFormatted.innerHTML = `
+            <div><strong>Name:</strong> ${escapeHtml(obj.name || '')}</div>
+            <div><strong>Email:</strong> ${escapeHtml(obj.email || '')}</div>
+            <div><strong>Gender:</strong> ${escapeHtml(obj.gender || '')}</div>
+            <div><strong>Birthday:</strong> ${escapeHtml(obj.birthday || '')}</div>
+        `;
+
+        result.hidden = false;
+        result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    function escapeHtml(str) {
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+    }
+    </script>
+</body>
+</html>
